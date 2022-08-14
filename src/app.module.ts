@@ -6,6 +6,7 @@ import { RestaurantsModule } from './restaurants/restaurants.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
+import { Restaurant } from './restaurants/entities/restaurant.entity';
 
 @Module({
   imports: [
@@ -34,9 +35,10 @@ import * as Joi from 'joi';
       database: process.env.DB_NAME,
       // TypeORM이 데이터베이스에 연결할 때, 모듈의 현재 상태로 마이그레이션
       // production mode일 때는 false
-      synchronize: true,
+      synchronize: process.env.NODE_ENV !== 'prod',
       // 데이터베이스에서 무슨일이 일어나는지 콘솔에 표시
-      logging: true,
+      logging: process.env.NODE_ENV !== 'prod',
+      entities: [Restaurant],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

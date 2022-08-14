@@ -1,22 +1,12 @@
-import { ArgsType, Field } from '@nestjs/graphql';
-import { IsBoolean, IsNumber, IsString, Length } from 'class-validator';
+import { InputType, OmitType } from '@nestjs/graphql';
+import { Restaurant } from '../entities/restaurant.entity';
 
-@ArgsType()
-export class CreateRestaurantDto {
-  @Field((type) => String)
-  @IsString()
-  @Length(5, 10)
-  name: string;
-
-  @Field((type) => Boolean)
-  @IsBoolean()
-  isVegan: boolean;
-
-  @Field((type) => String)
-  @IsString()
-  address: string;
-
-  @Field((type) => String)
-  @IsString()
-  ownersName: string;
-}
+// @ArgsType()을 @InputType()로 수정
+@InputType()
+// id만 Omit(제외), entity가 ObjectType이므로 InputType으로 변환할 필요가 있다.
+// OmitType은 InputType에만 작동
+export class CreateRestaurantDto extends OmitType(
+  Restaurant,
+  ['id'] as const,
+  InputType,
+) {}
