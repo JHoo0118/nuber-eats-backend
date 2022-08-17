@@ -24,7 +24,10 @@ export class UsersResolver {
       const { ok, error } = await this.usersService.createAccount(
         createAccountInput,
       );
-      return { ok, error };
+      return {
+        ok,
+        error,
+      };
     } catch (error) {
       return {
         error,
