@@ -15,6 +15,7 @@ import { User } from './users/entities/user.entity';
 import { JwtModule } from './jwt/jwt.module';
 import { JwtMiddleware } from './jwt/jwt.middleware';
 import { AuthModule } from './auth/auth.module';
+import { Verification } from './users/entities/verification.entity';
 
 @Module({
   imports: [
@@ -47,7 +48,7 @@ import { AuthModule } from './auth/auth.module';
       synchronize: process.env.NODE_ENV !== 'prod',
       // 데이터베이스에서 무슨일이 일어나는지 콘솔에 표시
       logging: process.env.NODE_ENV !== 'prod',
-      entities: [User],
+      entities: [User, Verification],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
