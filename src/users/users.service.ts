@@ -15,7 +15,7 @@ import { VerifyEmailOutput } from './dtos/verify-email.dto';
 import { MailService } from 'src/mail/mail.service';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(
     @InjectRepository(User) private readonly users: Repository<User>,
     @InjectRepository(Verification)
@@ -108,12 +108,11 @@ export class UsersService {
           this.verifications.create({ user }),
         );
         this.mailService.sendVerificationEmail(user.email, verification.code);
-        await this.users.update(user.id, user);
       }
       if (password) {
         user.password = password;
-        await this.users.save(user);
       }
+      await this.users.save(user);
       return {
         ok: true,
       };
