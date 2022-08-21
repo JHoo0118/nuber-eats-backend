@@ -27,7 +27,7 @@ import { MailModule } from './mail/mail.module';
       // production 환경일 때는 ConfigModule이 환경변수 파일을 무시
       ignoreEnvFile: process.env.NODE_ENV === 'prod' ? true : false,
       validationSchema: Joi.object({
-        NODE_ENV: Joi.string().valid('dev', 'prod').required(),
+        NODE_ENV: Joi.string().valid('dev', 'prod', 'test').required(),
         DB_HOST: Joi.string().required(),
         DB_PORT: Joi.string().required(),
         DB_USERNAME: Joi.string().required(),
@@ -50,7 +50,8 @@ import { MailModule } from './mail/mail.module';
       // production mode일 때는 false
       synchronize: process.env.NODE_ENV !== 'prod',
       // 데이터베이스에서 무슨일이 일어나는지 콘솔에 표시
-      logging: process.env.NODE_ENV !== 'prod',
+      logging:
+        process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'test',
       entities: [User, Verification],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
