@@ -19,6 +19,8 @@ import { Restaurant } from './restaurants/entities/restaurant.entity';
 import { Category } from './restaurants/entities/cetegory.entity';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { AuthModule } from './auth/auth.module';
+import { TypeOrmExModule } from './typeorm-ex/typeorm-ex.module';
+import { CategoryRepository } from './restaurants/repositories/category.repository';
 
 @Module({
   imports: [

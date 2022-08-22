@@ -1,14 +1,18 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Category } from './entities/cetegory.entity';
+import { TypeOrmExModule } from 'src/typeorm-ex/typeorm-ex.module';
 import { Restaurant } from './entities/restaurant.entity';
+import { CategoryRepository } from './repositories/category.repository';
 import { RestaurantResolver } from './restaurants.resolvers';
 import { RestaurantService } from './restaurants.service';
 
 @Module({
   // Import Repository
   // []안에 Entity Class들을 넣어준다.
-  imports: [TypeOrmModule.forFeature([Restaurant, Category])],
+  imports: [
+    TypeOrmModule.forFeature([Restaurant]),
+    TypeOrmExModule.forCustomRepository([CategoryRepository]),
+  ],
   providers: [RestaurantResolver, RestaurantService],
 })
 export class RestaurantsModule {}
