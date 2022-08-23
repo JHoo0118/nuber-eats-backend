@@ -1,5 +1,7 @@
 import { Field, InterfaceType } from '@nestjs/graphql';
 import {
+  BeforeInsert,
+  BeforeUpdate,
   CreateDateColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -18,4 +20,9 @@ export class CoreEntity {
   @UpdateDateColumn()
   @Field((type) => Date, { description: 'Updated At' })
   updatedAt: Date;
+
+  @BeforeInsert()
+  updateDate() {
+    this.updatedAt = new Date();
+  }
 }
