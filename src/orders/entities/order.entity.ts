@@ -23,6 +23,7 @@ import { OrderItem } from './order-item.entity';
 export const OrderStatus = {
   Pending: 'Pending',
   Cooking: 'Cooking',
+  Cooked: 'Cooked',
   PickedUp: 'PickedUp',
   Delivered: 'Delivered',
 } as const;
