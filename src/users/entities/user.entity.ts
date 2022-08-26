@@ -12,7 +12,7 @@ import { IsBoolean, IsEmail, IsEnum, IsString } from 'class-validator';
 import { Restaurant } from 'src/restaurants/entities/restaurant.entity';
 import { Order } from 'src/orders/entities/order.entity';
 
-const UserRole = {
+export const UserRole = {
   Client: 'Client',
   Owner: 'Owner',
   Delivery: 'Delivery',
