@@ -24,6 +24,7 @@ import { OrdersModule } from './orders/orders.module';
 import { Order } from './orders/entities/order.entity';
 import { OrderItem } from './orders/entities/order-item.entity';
 import { Context } from 'apollo-server-core';
+import { CommonModule } from './common/common.module';
 
 const TOKEN_KEY = 'x-jwt';
 
@@ -99,6 +100,7 @@ const TOKEN_KEY = 'x-jwt';
     UsersModule,
     RestaurantsModule,
     OrdersModule,
+    CommonModule,
   ],
 })
 export class AppModule {}
